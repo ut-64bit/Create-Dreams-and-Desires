@@ -1,0 +1,14 @@
+{
+  "type": "create:freezing",
+  "ingredients": [
+    {
+      "item": "minecraft:blue_ice"
+    }
+  ],
+  "results": [
+    {
+      "item": "minecraft:packed_ice",
+      "count": 9
+    }
+  ]
+}

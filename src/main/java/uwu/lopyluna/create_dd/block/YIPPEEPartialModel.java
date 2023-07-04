@@ -10,6 +10,11 @@ import java.util.Map;
 
 public class YIPPEEPartialModel {
 
+
+    public static final PartialModel
+    BRONZE_ENCASED_FAN_INNER = block("bronze_encased_fan/propeller")
+            ;
+
     public static final Map<ResourceLocation, Couple<PartialModel>> FOLDING_DOORS = new HashMap<>();
     static {
         putFoldingDoor("rose_door");

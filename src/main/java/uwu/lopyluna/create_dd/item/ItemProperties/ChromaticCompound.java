@@ -18,7 +18,7 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import uwu.lopyluna.create_dd.item.Pipebomb;
 
 
-public class ChromaticCompound extends Item{
+public class ChromaticCompound extends Item {
     public ChromaticCompound(Item.Properties properties) {
         super(properties);
     }
