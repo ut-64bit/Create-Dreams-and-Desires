@@ -20,6 +20,7 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.util.ForgeSoundType;
 import uwu.lopyluna.create_dd.block.BlockProperties.*;
 import uwu.lopyluna.create_dd.block.temp.YIPPEEButtonBlock;
+import uwu.lopyluna.create_dd.block.temp.YIPPEEFenceGateBlock;
 import uwu.lopyluna.create_dd.item.PipebombTab;
 
 import static com.simibubi.create.foundation.data.BlockStateGen.simpleCubeAll;
@@ -546,7 +547,7 @@ public class YIPPEE {
             .simpleItem()
             .register();
 
-    public static final BlockEntry<FenceGateBlock> smoked_fence_gate = REGISTRATE.block("smoked_fence_gate", p -> new FenceGateBlock(p, YIPPEEWoodSetType.SMOKED))
+    public static final BlockEntry<YIPPEEFenceGateBlock> smoked_fence_gate = REGISTRATE.block("smoked_fence_gate", p -> new YIPPEEFenceGateBlock(p, YIPPEEWoodSetType.SMOKED))
             .initialProperties(() -> Blocks.OAK_FENCE_GATE)
             .properties(p -> p.mapColor(MapColor.TERRACOTTA_BROWN))
             .lang("Smoked Fence Gate")
