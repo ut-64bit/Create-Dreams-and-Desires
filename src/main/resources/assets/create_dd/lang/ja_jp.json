@@ -396,9 +396,9 @@
   "block.create_dd.bronze_saw.tooltip.summary": "_メカニカルソー_のように動作しますが、_より早く採掘、加工_することができます!",
   "block.create_dd.hydraulic_press.tooltip": "HYDRAULIC PRESS",
   "block.create_dd.hydraulic_press.tooltip.summary": "_メカニカルプレス_ のように動作しますが、_一括で加工することができます_ ！",
-  "tetra.material.industrial_iron": "Industrial Iron",
+  "tetra.material.industrial_iron": "鋼材",
   "tetra.material.industrial_iron.prefix": "鋼材",
   "tetra.material.mithril": "ミスリル",
-  "tetra.material.mithril.prefix": "Mithril",
+  "tetra.material.mithril.prefix": "ミスリル",
   "itemGroup.create_dd.base": "§f"
 }
