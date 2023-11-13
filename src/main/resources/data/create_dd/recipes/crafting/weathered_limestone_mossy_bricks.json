@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "create_dd:weathered_limestone_mossy_bricks"
+      "item": "create_dd:cut_weathered_limestone_bricks"
     },
     [
       {

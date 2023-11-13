@@ -5,11 +5,13 @@ import com.simibubi.create.content.contraptions.behaviour.DoorMovingInteraction;
 import com.simibubi.create.content.decoration.encasing.EncasedCTBehaviour;
 import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorMovementBehaviour;
 import com.simibubi.create.foundation.block.connected.CTSpriteShiftEntry;
+import com.simibubi.create.foundation.block.connected.HorizontalCTBehaviour;
 import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.builders.BlockBuilder;
 import com.tterrag.registrate.util.nullness.NonNullUnaryOperator;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.tags.BlockTags;
@@ -21,6 +23,7 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import uwu.lopyluna.create_dd.block.BlockProperties.door.YIPPEESlidingDoorBlock;
 import uwu.lopyluna.create_dd.block.BlockProperties.wood.HazardBlock;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.function.Supplier;
 
 import static com.simibubi.create.AllInteractionBehaviours.interactionBehaviour;
@@ -30,6 +33,9 @@ import static com.simibubi.create.foundation.data.CreateRegistrate.connectedText
 import static com.simibubi.create.foundation.data.TagGen.axeOrPickaxe;
 import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
 
+@SuppressWarnings({"removal"})
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
 public class BuilderTransgender {
 
     public static <B extends HazardBlock> NonNullUnaryOperator<BlockBuilder<B, CreateRegistrate>> hazard(
@@ -51,6 +57,20 @@ public class BuilderTransgender {
         return b -> b.initialProperties(SharedProperties::stone)
                 .blockstate((c, p) -> p.simpleBlock(c.get()))
                 .onRegister(connectedTextures(() -> new EncasedCTBehaviour(ct.get())))
+                .onRegister(casingConnectivity((block, cc) -> cc.makeCasing(block, ct.get())))
+                .item()
+                .build();
+    }
+
+    public static <B extends Block> NonNullUnaryOperator<BlockBuilder<B, CreateRegistrate>> blockv2(
+            Supplier<CTSpriteShiftEntry> ct, Supplier<CTSpriteShiftEntry> ct2) {
+        return b -> b.initialProperties(SharedProperties::stone)
+                .blockstate((c, p) -> p.simpleBlock(c.get(), p.models()
+                        .cubeColumn(c.getName(), ct.get()
+                                        .getOriginalResourceLocation(),
+                                ct2.get()
+                                        .getOriginalResourceLocation())))
+                .onRegister(connectedTextures(() -> new HorizontalCTBehaviour(ct.get(), ct2.get())))
                 .onRegister(casingConnectivity((block, cc) -> cc.makeCasing(block, ct.get())))
                 .item()
                 .build();

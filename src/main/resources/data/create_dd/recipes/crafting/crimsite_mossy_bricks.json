@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "create:crimsite_bricks"
+      "item": "create:cut_crimsite_bricks"
     },
     [
       {

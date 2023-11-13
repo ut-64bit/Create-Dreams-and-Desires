@@ -1,0 +1,43 @@
+{
+  "conditions": [{
+    "type": "forge:mod_loaded",
+    "modid": "createaddition"
+  }],
+  "parent": "create_dd:overcharge_alloy",
+  "display": {
+    "icon": {
+      "item": "create_dd:overcharged_casing"
+    },
+    "title": {
+      "translate": "advancement.create_dd.overcharged_casing"
+    },
+     "description": {
+      "color": "#DBA213",
+      "translate": "advancement.create_dd.overcharged_casing.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "create_dd:overcharged_casing"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}
+

@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "create_dd:gabbro_bricks"
+      "item": "create_dd:cut_gabbro_bricks"
     },
     [
       {

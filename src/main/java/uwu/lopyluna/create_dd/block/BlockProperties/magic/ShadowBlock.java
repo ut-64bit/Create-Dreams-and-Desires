@@ -42,6 +42,15 @@ public class ShadowBlock extends Block {
             pLevel.playSound((Player)null, blockpos, SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.BLOCKS, 1.0F, 1.5F + pLevel.random.nextFloat() * 1.2F);
         }
 
+        BlockPos blockpos = pPos.getBlockPos();
+        Vec3 vec3 = VecHelper.clampComponentWise(VecHelper.offsetRandomly(Vec3.ZERO, pLevel.random, 1.25f), 1f)
+                .add(VecHelper.getCenterOf(blockpos));
+        pLevel.addParticle(ParticleTypes.REVERSE_PORTAL, vec3.x, vec3.y, vec3.z, pLevel.random.nextGaussian() * 0.05D,
+                pLevel.random.nextGaussian() * 0.05D, pLevel.random.nextGaussian() * 0.05D);
+        pLevel.addParticle(ParticleTypes.REVERSE_PORTAL, vec3.x, vec3.y, vec3.z, pLevel.random.nextGaussian() * 0.05D,
+                pLevel.random.nextGaussian() * 0.05D, pLevel.random.nextGaussian() * 0.05D);
+        pLevel.addParticle(ParticleTypes.WITCH, vec3.x, vec3.y, vec3.z, pLevel.random.nextGaussian() * 0.05D,
+                pLevel.random.nextGaussian() * 0.05D, pLevel.random.nextGaussian() * 0.05D);
     }
 
 }

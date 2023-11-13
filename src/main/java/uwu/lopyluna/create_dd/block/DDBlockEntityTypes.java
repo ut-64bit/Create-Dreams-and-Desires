@@ -10,9 +10,18 @@ import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import uwu.lopyluna.create_dd.block.BlockProperties.ReversedGearboxBlockEntity;
 import uwu.lopyluna.create_dd.block.BlockProperties.accelerator_motor.AcceleratorMotorBlockEntity;
 import uwu.lopyluna.create_dd.block.BlockProperties.accelerator_motor.AcceleratorMotorRenderer;
+import uwu.lopyluna.create_dd.block.BlockProperties.cog_crank.CogCrankBlockEntity;
+import uwu.lopyluna.create_dd.block.BlockProperties.cog_crank.CogCrankInstance;
+import uwu.lopyluna.create_dd.block.BlockProperties.cog_crank.CogCrankRenderer;
 import uwu.lopyluna.create_dd.block.BlockProperties.drill.bronze.BronzeDrillBlockEntity;
 import uwu.lopyluna.create_dd.block.BlockProperties.drill.bronze.BronzeDrillInstance;
 import uwu.lopyluna.create_dd.block.BlockProperties.drill.bronze.BronzeDrillRenderer;
+import uwu.lopyluna.create_dd.block.BlockProperties.flywheel.EngineInstance;
+import uwu.lopyluna.create_dd.block.BlockProperties.flywheel.FlyWheelInstance;
+import uwu.lopyluna.create_dd.block.BlockProperties.flywheel.FlywheelBlockEntity;
+import uwu.lopyluna.create_dd.block.BlockProperties.flywheel.FlywheelRenderer;
+import uwu.lopyluna.create_dd.block.BlockProperties.flywheel.engine.EngineRenderer;
+import uwu.lopyluna.create_dd.block.BlockProperties.flywheel.engine.FurnaceEngineBlockEntity;
 import uwu.lopyluna.create_dd.block.BlockProperties.industrial_fan.IndustrialFanBlockEntity;
 import uwu.lopyluna.create_dd.block.BlockProperties.industrial_fan.IndustrialFanRenderer;
 import uwu.lopyluna.create_dd.block.BlockProperties.industrial_fan.IndustrialFanInstance;
@@ -35,12 +44,29 @@ import uwu.lopyluna.create_dd.block.BlockProperties.kinetic_motor.KineticMotorBl
 import uwu.lopyluna.create_dd.block.BlockProperties.kinetic_motor.KineticMotorRenderer;
 import uwu.lopyluna.create_dd.block.BlockProperties.ponder_box.PonderBoxBlockEntity;
 import uwu.lopyluna.create_dd.block.BlockProperties.ponder_box.PonderBoxRenderer;
+import uwu.lopyluna.create_dd.block.BlockProperties.potato_turret.PotatoTurretBlockEntity;
+import uwu.lopyluna.create_dd.block.BlockProperties.potato_turret.PotatoTurretInstance;
+import uwu.lopyluna.create_dd.block.BlockProperties.potato_turret.PotatoTurretRenderer;
 import uwu.lopyluna.create_dd.block.BlockProperties.secondary_encased_chain_drive.ChainGearshiftBlock2Entity;
 
 import static uwu.lopyluna.create_dd.DDCreate.REGISTRATE;
 
 
 public class DDBlockEntityTypes {
+
+    public static final BlockEntityEntry<FurnaceEngineBlockEntity> FURNACE_ENGINE = REGISTRATE
+            .blockEntity("furnace_engine", FurnaceEngineBlockEntity::new)
+            .instance(() -> EngineInstance::new, false)
+            .validBlocks(DDBlocks.FURNACE_ENGINE)
+            .renderer(() -> EngineRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<FlywheelBlockEntity> FLYWHEEL = REGISTRATE
+            .blockEntity("flywheel", FlywheelBlockEntity::new)
+            .instance(() -> FlyWheelInstance::new, false)
+            .validBlocks(DDBlocks.FLYWHEEL)
+            .renderer(() -> FlywheelRenderer::new)
+            .register();
 
     public static final BlockEntityEntry<BronzeSawBlockEntity> BRONZE_SAW = REGISTRATE
             .blockEntity("bronze_saw", BronzeSawBlockEntity::new)
@@ -151,5 +177,20 @@ public class DDBlockEntityTypes {
             .validBlocks(DDBlocks.ACCELERATOR_MOTOR)
             .renderer(() -> AcceleratorMotorRenderer::new)
             .register();
+
+    public static final BlockEntityEntry<PotatoTurretBlockEntity> POTATO_TURRET =
+            REGISTRATE.blockEntity("potato_turret", PotatoTurretBlockEntity::new)
+                    .instance(() -> PotatoTurretInstance::new, false)
+                    .validBlocks(DDBlocks.POTATO_TURRET)
+                    .renderer(() -> PotatoTurretRenderer::new)
+                    .register();
+
+    public static final BlockEntityEntry<CogCrankBlockEntity> cogCrank = REGISTRATE
+            .blockEntity("cog_crank", CogCrankBlockEntity::new)
+            .instance(() -> CogCrankInstance::new)
+            .validBlocks(DDBlocks.cogCrank)
+            .renderer(() -> CogCrankRenderer::new)
+            .register();
+
     public static void register() {}
 }

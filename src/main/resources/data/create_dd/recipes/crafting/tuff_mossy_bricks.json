@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "create:tuff_bricks"
+      "item": "create:cut_tuff_bricks"
     },
     [
       {

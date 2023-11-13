@@ -9,13 +9,14 @@
     "create_dd:rose_door",
     "create_dd:smoked_door",
     "create_dd:spirit_door",
+    "create_dd:rubber_door",
     "create_dd:bronze_drill",
     "create_dd:bronze_saw",
     "create_dd:2_blade_fan",
     "create_dd:4_blade_fan",
     "create_dd:8_blade_fan",
 
-
+    "create_dd:cog_crank",
 
     "create_dd:splashing_sail",
     "create_dd:haunting_sail",
@@ -25,6 +26,15 @@
     "create_dd:freezing_sail",
 
     "create_dd:kinetic_motor",
-    "create_dd:accelerator_motor"
+    "create_dd:accelerator_motor",
+
+    "create_dd:shadow_steel_casing",
+    "create_dd:refined_radiance_casing",
+    "create_dd:stargaze_singularity_casing",
+    "create_dd:overcharged_casing",
+    "create_dd:nether_brick_casing",
+    "create_dd:brick_casing",
+    "create_dd:tin_casing",
+    "create_dd:netherite_casing"
   ]
 }

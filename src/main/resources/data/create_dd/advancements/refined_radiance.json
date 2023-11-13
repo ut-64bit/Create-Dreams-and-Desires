@@ -1,0 +1,39 @@
+{
+  "parent": "create_dd:chromatic_compound",
+  "display": {
+    "icon": {
+      "item": "create_dd:refined_radiance"
+    },
+    "title": {
+      "translate": "advancement.create_dd.refined_radiance"
+    },
+     "description": {
+      "color": "#DBA213",
+      "translate": "advancement.create_dd.refined_radiance.desc"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "create_dd:refined_radiance"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}
+

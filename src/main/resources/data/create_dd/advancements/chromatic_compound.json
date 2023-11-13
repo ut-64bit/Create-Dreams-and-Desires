@@ -1,0 +1,39 @@
+{
+  "parent": "create_dd:spectral_ruby",
+  "display": {
+    "icon": {
+      "item": "create_dd:chromatic_compound"
+    },
+    "title": {
+      "translate": "advancement.create_dd.chromatic_compound"
+    },
+     "description": {
+      "color": "#DBA213",
+      "translate": "advancement.create_dd.chromatic_compound.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "create_dd:chromatic_compound"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}
+

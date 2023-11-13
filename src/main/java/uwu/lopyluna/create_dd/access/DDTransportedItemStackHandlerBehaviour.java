@@ -17,68 +17,93 @@ public class DDTransportedItemStackHandlerBehaviour extends TransportedItemStack
 
     public static final BehaviourType<DDTransportedItemStackHandlerBehaviour> TYPE = new BehaviourType<>();
 
-    public ProcessingCallback processingCallback;
-    public PositionGetter positionGetter;
+    private DDTransportedItemStackHandlerBehaviour.ProcessingCallback processingCallback;
+    private DDTransportedItemStackHandlerBehaviour.PositionGetter positionGetter;
 
     public DDTransportedItemStackHandlerBehaviour(SmartBlockEntity be, TransportedItemStackHandlerBehaviour.ProcessingCallback processingCallback) {
         super(be, processingCallback);
     }
 
-    public static class DDTransportedResult {
+    public static class TransportedResult {
         List<DDTransportedItemStack> outputs;
         DDTransportedItemStack heldOutput;
 
-        public static final DDTransportedResult DO_NOTHING = new DDTransportedResult(null, null);
-        public static final DDTransportedResult REMOVE_ITEM = new DDTransportedResult(ImmutableList.of(), null);
+        private static final DDTransportedItemStackHandlerBehaviour.TransportedResult DO_NOTHING = new DDTransportedItemStackHandlerBehaviour.TransportedResult(null, null);
+        private static final DDTransportedItemStackHandlerBehaviour.TransportedResult REMOVE_ITEM = new DDTransportedItemStackHandlerBehaviour.TransportedResult(ImmutableList.of(), null);
 
-        public static DDTransportedResult doNothing() {return DO_NOTHING;}
+        public static DDTransportedItemStackHandlerBehaviour.TransportedResult doNothing() {
+            return DO_NOTHING;
+        }
 
-        public static DDTransportedResult removeItem() {return REMOVE_ITEM;}
+        public static DDTransportedItemStackHandlerBehaviour.TransportedResult removeItem() {
+            return REMOVE_ITEM;
+        }
 
-        public static DDTransportedResult convertTo(DDTransportedItemStack output) {return new DDTransportedResult(ImmutableList.of(output), null);}
+        public static DDTransportedItemStackHandlerBehaviour.TransportedResult convertTo(DDTransportedItemStack output) {
+            return new DDTransportedItemStackHandlerBehaviour.TransportedResult(ImmutableList.of(output), null);
+        }
 
-        public static DDTransportedResult convertTo(List<DDTransportedItemStack> outputs) {return new DDTransportedResult(outputs, null);}
-        public static DDTransportedResult convertToAndLeaveHeld(List<DDTransportedItemStack> outputs, DDTransportedItemStack heldOutput) {return new DDTransportedResult(outputs, heldOutput);}
+        public static DDTransportedItemStackHandlerBehaviour.TransportedResult convertTo(List<DDTransportedItemStack> outputs) {
+            return new DDTransportedItemStackHandlerBehaviour.TransportedResult(outputs, null);
+        }
 
-        public DDTransportedResult(List<DDTransportedItemStack> outputs, DDTransportedItemStack heldOutput) {this.outputs = outputs;this.heldOutput = heldOutput;}
+        public static DDTransportedItemStackHandlerBehaviour.TransportedResult convertToAndLeaveHeld(List<DDTransportedItemStack> outputs,
+                                                                                                   DDTransportedItemStack heldOutput) {
+            return new DDTransportedItemStackHandlerBehaviour.TransportedResult(outputs, heldOutput);
+        }
 
-        public boolean doesNothing() {return outputs == null;}
+        private TransportedResult(List<DDTransportedItemStack> outputs, DDTransportedItemStack heldOutput) {
+            this.outputs = outputs;
+            this.heldOutput = heldOutput;
+        }
 
-        public boolean didntChangeFrom(ItemStack stackBefore) {return doesNothing() || outputs.size() == 1 && outputs.get(0).stack.equals(stackBefore, false) && !hasHeldOutput();}
+        public boolean doesNothing() {
+            return outputs == null;
+        }
 
-        public List<DDTransportedItemStack> getOutputs() {if (outputs == null) throw new IllegalStateException("Do not call getOutputs() on a Result that doesNothing().");return outputs;}
+        public boolean didntChangeFrom(ItemStack stackBefore) {
+            return doesNothing()
+                    || outputs.size() == 1 && outputs.get(0).stack.equals(stackBefore, false) && !hasHeldOutput();
+        }
 
-        public boolean hasHeldOutput() {return heldOutput != null;}
+        public List<DDTransportedItemStack> getOutputs() {
+            if (outputs == null)
+                throw new IllegalStateException("Do not call getOutputs() on a Result that doesNothing().");
+            return outputs;
+        }
+
+        public boolean hasHeldOutput() {
+            return heldOutput != null;
+        }
 
         @Nullable
-        public DDTransportedItemStack getHeldOutput() {if (heldOutput == null) throw new IllegalStateException("Do not call getHeldOutput() on a Result with hasHeldOutput() == false.");return heldOutput;}
+        public DDTransportedItemStack getHeldOutput() {
+            if (heldOutput == null)
+                throw new IllegalStateException(
+                        "Do not call getHeldOutput() on a Result with hasHeldOutput() == false.");
+            return heldOutput;
+        }
 
     }
 
-    public DDTransportedItemStackHandlerBehaviour(SmartBlockEntity be, ProcessingCallback processingCallback) {
-        super(be, (TransportedItemStackHandlerBehaviour.ProcessingCallback) processingCallback);
-        this.processingCallback = processingCallback;
-        positionGetter = t -> VecHelper.getCenterOf(be.getBlockPos());
-    }
-
-    public TransportedItemStackHandlerBehaviour withStackPlacement(PositionGetter function) {
+    public DDTransportedItemStackHandlerBehaviour withStackPlacement(DDTransportedItemStackHandlerBehaviour.PositionGetter function) {
         this.positionGetter = function;
         return this;
     }
 
-    public void handleProcessingOnAllItems(Function<TransportedItemStack, TransportedResult> processFunction) {
-        handleCenteredProcessingOnAllItems(.51f, processFunction);
+    public void DDhandleProcessingOnAllItems(Function<DDTransportedItemStack, DDTransportedItemStackHandlerBehaviour.TransportedResult> processFunction) {
+        DDhandleCenteredProcessingOnAllItems(.51f, processFunction);
     }
 
-    public void handleProcessingOnItem(DDTransportedItemStack item, TransportedResult processOutput) {
-        handleCenteredProcessingOnAllItems(.51f, t -> {
+    public void handleProcessingOnItem(DDTransportedItemStack item, DDTransportedItemStackHandlerBehaviour.TransportedResult processOutput) {
+        DDhandleCenteredProcessingOnAllItems(.51f, t -> {
             if (t == item)
                 return processOutput;
             return null;
         });
     }
 
-    public void handleCenteredProcessingOnAllItems(float maxDistanceFromCenter, Function<TransportedItemStack, TransportedResult> processFunction) {
+    public void DDhandleCenteredProcessingOnAllItems(float maxDistanceFromCenter, Function<DDTransportedItemStack, DDTransportedItemStackHandlerBehaviour.TransportedResult> processFunction) {
         this.processingCallback.applyToAllItems(maxDistanceFromCenter, processFunction);
     }
 
@@ -93,14 +118,12 @@ public class DDTransportedItemStackHandlerBehaviour extends TransportedItemStack
 
     @FunctionalInterface
     public interface ProcessingCallback {
-        public void applyToAllItems(float maxDistanceFromCenter,
-                                    Function<TransportedItemStack, TransportedResult> processFunction);
+        void applyToAllItems(float maxDistanceFromCenter,
+                                    Function<DDTransportedItemStack, DDTransportedItemStackHandlerBehaviour.TransportedResult> processFunction);
     }
 
     @FunctionalInterface
     public interface PositionGetter {
-        public Vec3 getWorldPositionVector(DDTransportedItemStack transported);
+        Vec3 getWorldPositionVector(DDTransportedItemStack transported);
     }
-    
-
 }

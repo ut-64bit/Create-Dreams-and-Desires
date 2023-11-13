@@ -1,12 +1,9 @@
 package uwu.lopyluna.create_dd.block.BlockProperties.industrial_fan.rando;
 
-import java.util.Locale;
-
 import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-
 import com.simibubi.create.foundation.particle.ICustomParticleDataWithSprite;
 import net.minecraft.client.particle.ParticleEngine.SpriteParticleRegistration;
 import net.minecraft.core.particles.ParticleOptions;
@@ -15,6 +12,8 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import java.util.Locale;
+
 public class DDAirParticleData implements ParticleOptions, ICustomParticleDataWithSprite<DDAirParticleData> {
 
     public static final Codec<DDAirParticleData> CODEC = RecordCodecBuilder.create(i ->
@@ -22,7 +21,7 @@ public class DDAirParticleData implements ParticleOptions, ICustomParticleDataWi
                             Codec.FLOAT.fieldOf("drag").forGetter(p -> p.drag),
                             Codec.FLOAT.fieldOf("speed").forGetter(p -> p.speed))
                     .apply(i, DDAirParticleData::new));
-    @Deprecated
+
     public static final ParticleOptions.Deserializer<DDAirParticleData> DESERIALIZER =
             new ParticleOptions.Deserializer<DDAirParticleData>() {
                 public DDAirParticleData fromCommand(ParticleType<DDAirParticleData> particleTypeIn, StringReader reader)
@@ -66,7 +65,7 @@ public class DDAirParticleData implements ParticleOptions, ICustomParticleDataWi
     public String writeToString() {
         return String.format(Locale.ROOT, "%s %f %f", DDParticleTypes.AIR.parameter(), drag, speed);
     }
-    @Deprecated
+
     @Override
     public Deserializer<DDAirParticleData> getDeserializer() {
         return DESERIALIZER;
@@ -80,7 +79,7 @@ public class DDAirParticleData implements ParticleOptions, ICustomParticleDataWi
     @Override
     @OnlyIn(Dist.CLIENT)
     public SpriteParticleRegistration<DDAirParticleData> getMetaFactory() {
-        return IndustrialAirParticle.Factory::new;
+        return DDAirParticle.Factory::new;
     }
 
 }

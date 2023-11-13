@@ -1,0 +1,39 @@
+{
+  "parent": "create_dd:steel_casing",
+  "display": {
+    "icon": {
+      "item": "create_dd:polished_spectral_ruby"
+    },
+    "title": {
+      "translate": "advancement.create_dd.polished_spectral_ruby"
+    },
+     "description": {
+      "color": "#DBA213",
+      "translate": "advancement.create_dd.polished_spectral_ruby.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "create_dd:polished_spectral_ruby"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}
+

@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "create_dd:potassic_bricks"
+      "item": "create_dd:cut_potassic_bricks"
     },
     [
       {

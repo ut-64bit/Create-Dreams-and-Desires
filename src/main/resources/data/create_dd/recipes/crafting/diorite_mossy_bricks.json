@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "create:diorite_bricks"
+      "item": "create:cut_diorite_bricks"
     },
     [
       {

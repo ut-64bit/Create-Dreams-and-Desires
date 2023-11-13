@@ -1,5 +1,6 @@
 package uwu.lopyluna.create_dd.item;
 
+import com.simibubi.create.AllTags;
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyItem;
 import com.simibubi.create.foundation.data.AssetLookup;
 import com.tterrag.registrate.util.entry.ItemEntry;
@@ -8,17 +9,19 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.SimpleFoiledItem;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 import uwu.lopyluna.create_dd.creative.DDItemTab;
 import uwu.lopyluna.create_dd.item.ItemProperties.ItemDisabled;
 import uwu.lopyluna.create_dd.item.ItemProperties.SequencedCraftingItem.SequencedCraftingItem1;
 import uwu.lopyluna.create_dd.item.ItemProperties.SequencedCraftingItem.SequencedCraftingItem2;
-import uwu.lopyluna.create_dd.item.ItemProperties.compound.ChromaticCompound;
-import uwu.lopyluna.create_dd.item.ItemProperties.compound.OverchargeAlloy;
-import uwu.lopyluna.create_dd.item.ItemProperties.compound.RefinedRadiance;
-import uwu.lopyluna.create_dd.item.ItemProperties.compound.ShadowSteel;
+import uwu.lopyluna.create_dd.item.ItemProperties.StargazeInfiniteBlock;
+import uwu.lopyluna.create_dd.item.ItemProperties.UnchargedStargazeSingularity;
+import uwu.lopyluna.create_dd.item.ItemProperties.compound.*;
 import uwu.lopyluna.create_dd.item.ItemProperties.exp.ExperienceNuggetItemOne;
 import uwu.lopyluna.create_dd.item.ItemProperties.exp.ExperienceNuggetItemTwo;
+import uwu.lopyluna.create_dd.item.ItemProperties.milkshakes.*;
 import uwu.lopyluna.create_dd.item.ItemProperties.sawtool.DeforesterItem;
 import uwu.lopyluna.create_dd.item.ItemProperties.sawtool.ForestRavagerItem;
 
@@ -69,7 +72,11 @@ public class DDItems {
             spectral_ruby = ingredient("spectral_ruby"),
             polished_spectral_ruby = ingredient("polished_spectral_ruby"),
             coal_piece = taggedIngredient("coal_piece", forgeItemTag("nuggets/coal")),
-            diamond_shard = taggedIngredient("diamond_shard", forgeItemTag("nuggets/diamond"));
+            diamond_shard = taggedIngredient("diamond_shard", forgeItemTag("nuggets/diamond")),
+            compound_base = ingredient("compound_base"),
+            crystallized_sap = ingredient("crystallized_sap"),
+            raw_rubber = ingredient("raw_rubber"),
+            rubber = ingredient("rubber");
 
     public static final ItemEntry<SimpleFoiledItem>
             frozen_nugget = foilIngredient("frozen_nugget")
@@ -80,6 +87,7 @@ public class DDItems {
             vanilla_orchid = i("vanilla_orchid");
 
     public static final ItemEntry<SequencedAssemblyItem>
+            incomplete_stargaze_singularity = sequencedIngredient("incomplete_stargaze_singularity"),
             incomplete_integrated_circuit = sequencedIngredient("incomplete_integrated_circuit"),
             incomplete_integrated_mechanism = sequencedIngredient("incomplete_integrated_mechanism"),
             incomplete_abstruse_mechanism = sequencedIngredient("incomplete_abstruse_mechanism"),
@@ -87,6 +95,29 @@ public class DDItems {
             incomplete_inductive_mechanism = sequencedIngredient("incomplete_inductive_mechanism"),
             incomplete_infernal_mechanism = sequencedIngredient("incomplete_infernal_mechanism"),
             incomplete_sealed_mechanism = sequencedIngredient("incomplete_sealed_mechanism");
+
+    public static final ItemEntry<StargazeInfiniteBlock>
+            INFA_STONE = infablock("STONE", Blocks.STONE),
+            INFA_GRANITE = infablock("GRANITE", Blocks.GRANITE),
+            INFA_DIORITE = infablock("DIORITE", Blocks.DIORITE),
+            INFA_ANDESITE = infablock("ANDESITE", Blocks.ANDESITE),
+            INFA_COBBLED_DEEPSLATE = infablock("COBBLED_DEEPSLATE", Blocks.COBBLED_DEEPSLATE),
+            INFA_CALCITE = infablock("CALCITE", Blocks.CALCITE),
+            INFA_TUFF = infablock("TUFF", Blocks.TUFF),
+            INFA_DRIPSTONE_BLOCK = infablock("DRIPSTONE_BLOCK", Blocks.DRIPSTONE_BLOCK),
+            INFA_DIRT = infablock("DIRT", Blocks.DIRT),
+            INFA_COARSE_DIRT = infablock("COARSE_DIRT", Blocks.COARSE_DIRT),
+            INFA_MUD = infablock("MUD", Blocks.MUD),
+            INFA_COBBLESTONE = infablock("COBBLESTONE", Blocks.COBBLESTONE),
+            INFA_SAND = infablock("SAND", Blocks.SAND),
+            INFA_RED_SAND = infablock("RED_SAND", Blocks.RED_SAND),
+            INFA_GRAVEL = infablock("GRAVEL", Blocks.GRAVEL),
+            INFA_OBSIDIAN = infablock("OBSIDIAN", Blocks.OBSIDIAN),
+            INFA_SOUL_SAND = infablock("SOUL_SAND", Blocks.SOUL_SAND),
+            INFA_END_STONE = infablock("END_STONE", Blocks.END_STONE),
+            INFA_NETHERRACK = infablock("NETHERRACK", Blocks.NETHERRACK),
+            INFA_MAGMA_BLOCK = infablock("MAGMA_BLOCK", Blocks.MAGMA_BLOCK),
+            INFA_MOSS_BLOCK = infablock("MOSS_BLOCK", Blocks.MOSS_BLOCK);
 
     public static final ItemEntry<ChromaticCompound> CHROMATIC_COMPOUND =
             REGISTRATE.item("chromatic_compound", ChromaticCompound::new)
@@ -102,12 +133,61 @@ public class DDItems {
                     .fireResistant())
             .register();
 
+    public static final ItemEntry<ShadowSteel> SHADOW_STEEL_SHEET =
+            REGISTRATE.item("shadow_steel_sheet", ShadowSteel::new)
+                    .properties(p -> p.stacksTo(16)
+                            .rarity(Rarity.UNCOMMON)
+                            .fireResistant())
+                    .register();
+
     public static final ItemEntry<RefinedRadiance> REFINED_RADIANCE =
             REGISTRATE.item("refined_radiance", RefinedRadiance::new)
             .properties(p -> p.stacksTo(16)
                     .rarity(Rarity.UNCOMMON)
                     .fireResistant())
             .register();
+
+    public static final ItemEntry<RefinedRadiance> REFINED_RADIANCE_SHEET =
+            REGISTRATE.item("refined_radiance_sheet", RefinedRadiance::new)
+                    .properties(p -> p.stacksTo(16)
+                            .rarity(Rarity.UNCOMMON)
+                            .fireResistant())
+                    .register();
+
+    public static final ItemEntry<UnchargedStargazeSingularity> FALLEN_STARGAZE_SINGULARITY =
+            REGISTRATE.item("fallen_stargaze_singularity", UnchargedStargazeSingularity::new)
+                    .properties(p -> p.stacksTo(16)
+                            .rarity(Rarity.UNCOMMON)
+                            .fireResistant())
+                    .register();
+
+    public static final ItemEntry<StargazeSingularity> STARGAZE_SINGULARITY =
+            REGISTRATE.item("stargaze_singularity", StargazeSingularity::new)
+                    .properties(p -> p.stacksTo(16)
+                            .rarity(Rarity.EPIC)
+                            .fireResistant())
+                    .register();
+
+    public static final ItemEntry<StargazeSingularity> STARGAZE_SINGULARITY_SHEET =
+            REGISTRATE.item("stargaze_singularity_sheet", StargazeSingularity::new)
+                    .properties(p -> p.stacksTo(16)
+                            .rarity(Rarity.EPIC)
+                            .fireResistant())
+                    .register();
+
+    public static final ItemEntry<BlazeGold> BLAZE_GOLD =
+            REGISTRATE.item("blaze_gold", BlazeGold::new)
+                    .properties(p -> p.stacksTo(16)
+                            .rarity(Rarity.UNCOMMON)
+                            .fireResistant())
+                    .register();
+
+    public static final ItemEntry<BlazeGold> BLAZE_GOLD_SHEET =
+            REGISTRATE.item("blaze_gold_sheet", BlazeGold::new)
+                    .properties(p -> p.stacksTo(16)
+                            .rarity(Rarity.UNCOMMON)
+                            .fireResistant())
+                    .register();
 
     public static final ItemEntry<OverchargeAlloy> OVERCHARGE_ALLOY =
             REGISTRATE.item("overcharge_alloy", OverchargeAlloy::new)
@@ -116,15 +196,8 @@ public class DDItems {
                             .fireResistant())
                     .register();
 
-    public static final ItemEntry<ShadowSteel> SHADOW_STEEL_SHEET =
-            REGISTRATE.item("shadow_steel_sheet", ShadowSteel::new)
-                    .properties(p -> p.stacksTo(16)
-                            .rarity(Rarity.UNCOMMON)
-                            .fireResistant())
-                    .register();
-
-    public static final ItemEntry<RefinedRadiance> REFINED_RADIANCE_SHEET =
-            REGISTRATE.item("refined_radiance_sheet", RefinedRadiance::new)
+    public static final ItemEntry<OverchargeAlloy> OVERCHARGE_ALLOY_SHEET =
+            REGISTRATE.item("overcharge_alloy_sheet", OverchargeAlloy::new)
                     .properties(p -> p.stacksTo(16)
                             .rarity(Rarity.UNCOMMON)
                             .fireResistant())
@@ -161,8 +234,35 @@ public class DDItems {
                     .lang("Mass of Experience")
                     .register();
 
+    public static final ItemEntry<CaramelMilkshake> caramel_milkshake = REGISTRATE.item("caramel_milkshake", CaramelMilkshake::new)
+            .tag(AllTags.AllItemTags.UPRIGHT_ON_BELT.tag)
+            .properties(p -> p.stacksTo(12))
+            .register();
 
+    public static final ItemEntry<ChocolateMilkshake> chocolate_milkshake = REGISTRATE.item("chocolate_milkshake", ChocolateMilkshake::new)
+            .tag(AllTags.AllItemTags.UPRIGHT_ON_BELT.tag)
+            .properties(p -> p.stacksTo(12))
+            .register();
 
+    public static final ItemEntry<GlowberryMilkshake> glowberry_milkshake = REGISTRATE.item("glowberry_milkshake", GlowberryMilkshake::new)
+            .tag(AllTags.AllItemTags.UPRIGHT_ON_BELT.tag)
+            .properties(p -> p.stacksTo(12))
+            .register();
+
+    public static final ItemEntry<StrawberryMilkshake> strawberry_milkshake = REGISTRATE.item("strawberry_milkshake", StrawberryMilkshake::new)
+            .tag(AllTags.AllItemTags.UPRIGHT_ON_BELT.tag)
+            .properties(p -> p.stacksTo(12))
+            .register();
+
+    public static final ItemEntry<VanillaMilkshake> vanilla_milkshake = REGISTRATE.item("vanilla_milkshake", VanillaMilkshake::new)
+            .tag(AllTags.AllItemTags.UPRIGHT_ON_BELT.tag)
+            .properties(p -> p.stacksTo(12))
+            .register();
+
+    public static final ItemEntry<HotChocolate> hot_chocolate = REGISTRATE.item("hot_chocolate", HotChocolate::new)
+            .tag(AllTags.AllItemTags.UPRIGHT_ON_BELT.tag)
+            .properties(p -> p.stacksTo(12))
+            .register();
 
 
     public static final ItemEntry<SequencedCraftingItem1>
@@ -179,6 +279,15 @@ public class DDItems {
         return REGISTRATE.item(name, Item::new)
                 .register();
     }
+
+    private static ItemEntry<StargazeInfiniteBlock> infablock(String name, Block block) {
+        return REGISTRATE.item("infa" + name.toLowerCase(), p -> new StargazeInfiniteBlock(block, p))
+                .properties(p -> p.stacksTo(1)
+                        .rarity(Rarity.EPIC)
+                        .fireResistant())
+                .register();
+    }
+
     private static ItemEntry<SimpleFoiledItem> foilIngredient(String name) {
         return REGISTRATE.item(name, SimpleFoiledItem::new)
                 .register();

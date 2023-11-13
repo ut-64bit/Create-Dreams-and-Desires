@@ -1,5 +1,6 @@
 package uwu.lopyluna.create_dd;
 
+import com.simibubi.create.AllTags;
 import com.simibubi.create.foundation.utility.Lang;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -15,6 +16,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import java.util.Collections;
+
+import static com.simibubi.create.AllTags.NameSpace.MOD;
 
 public class DDTags {
 
@@ -57,6 +60,8 @@ public static TagKey<Block> forgeBlockTag(String path) {
         limestone_replaceable,
         gabbro_replaceable,
         bronze_drill_immune,
+        bronze_saw_immune,
+        bronze_saw_valid,
         radiant_drill_immune,
         shadow_drill_immune,
 
@@ -69,6 +74,8 @@ public static TagKey<Block> forgeBlockTag(String path) {
 
         fan_heaters,
 
+        FAN_PROCESSING_CATALYSTS_SUPERHEATING,
+        FAN_PROCESSING_CATALYSTS_FREEZING,
         ;
 
         public final TagKey<Block> tag;
@@ -119,28 +126,30 @@ public static TagKey<Block> forgeBlockTag(String path) {
 
     public enum AllFluidTags {
 
+        FAN_PROCESSING_CATALYSTS_SUPERHEATING,
+        FAN_PROCESSING_CATALYSTS_FREEZING,
         ;
 
         public final TagKey<Fluid> tag;
         public final boolean alwaysDatagen;
 
         AllFluidTags() {
-            this(NameSpace.MOD);
+            this(MOD);
         }
 
-        AllFluidTags(NameSpace namespace) {
+        AllFluidTags(AllTags.NameSpace namespace) {
             this(namespace, namespace.optionalDefault, namespace.alwaysDatagenDefault);
         }
 
-        AllFluidTags(NameSpace namespace, String path) {
+        AllFluidTags(AllTags.NameSpace namespace, String path) {
             this(namespace, path, namespace.optionalDefault, namespace.alwaysDatagenDefault);
         }
 
-        AllFluidTags(NameSpace namespace, boolean optional, boolean alwaysDatagen) {
+        AllFluidTags(AllTags.NameSpace namespace, boolean optional, boolean alwaysDatagen) {
             this(namespace, null, optional, alwaysDatagen);
         }
 
-        AllFluidTags(NameSpace namespace, String path, boolean optional, boolean alwaysDatagen) {
+        AllFluidTags(AllTags.NameSpace namespace, String path, boolean optional, boolean alwaysDatagen) {
             ResourceLocation id = new ResourceLocation(namespace.id, path == null ? Lang.asId(name()) : path);
             if (optional) {
                 tag = optionalTag(ForgeRegistries.FLUIDS, id);
@@ -150,12 +159,13 @@ public static TagKey<Block> forgeBlockTag(String path) {
             this.alwaysDatagen = alwaysDatagen;
         }
 
-
         @SuppressWarnings("deprecation")
-        public boolean matches(Fluid fluid) {return fluid.is(tag);}
+        public boolean matches(Fluid fluid) {
+            return fluid.is(tag);
+        }
 
-        public Fluid matches(FluidState state) {
-            return state.getType();
+        public boolean matches(FluidState state) {
+            return state.is(tag);
         }
         private static void init() {}
 

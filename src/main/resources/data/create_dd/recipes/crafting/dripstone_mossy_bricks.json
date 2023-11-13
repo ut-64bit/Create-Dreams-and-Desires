@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "create:dripstone_bricks"
+      "item": "create:cut_dripstone_bricks"
     },
     [
       {

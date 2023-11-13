@@ -1,0 +1,40 @@
+{
+  "parent": "create_dd:integrated_circuit",
+  "display": {
+    "icon": {
+      "item": "create_dd:calculation_mechanism"
+    },
+    "title": {
+      "translate": "advancement.create_dd.calculation_mechanism"
+    },
+     "description": {
+      "color": "#DBA213",
+      "translate": "advancement.create_dd.calculation_mechanism.desc"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "create_dd:calculation_mechanism"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}
+
+

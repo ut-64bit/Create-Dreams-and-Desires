@@ -29,7 +29,7 @@ import uwu.lopyluna.create_dd.item.DDItems;
 import uwu.lopyluna.create_dd.jei.fan.*;
 import uwu.lopyluna.create_dd.recipe.DDRecipesTypes;
 import uwu.lopyluna.create_dd.recipe.Recipes.FreezingRecipe;
-import uwu.lopyluna.create_dd.recipe.Recipes.SuperHeatingRecipe;
+import uwu.lopyluna.create_dd.recipe.Recipes.SuperheatingRecipe;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -69,7 +69,7 @@ public class DDcreateJEI implements IModPlugin {
             .emptyBackground(178, 72)
             .build("industrial_fan_freezing", FanFreezingCategory::new),
 
-        superheating = builder(SuperHeatingRecipe.class)
+        superheating = builder(SuperheatingRecipe.class)
             .addTypedRecipes(DDRecipesTypes.SUPERHEATING)
             .catalystStack(DDProcessingViaFanCategory.getFan("industrial_fan_superheating"))
             .doubleItemIcon(AllItems.PROPELLER.get(), AllItems.BLAZE_CAKE.get())
@@ -100,10 +100,6 @@ public class DDcreateJEI implements IModPlugin {
         DDCategories.forEach(c -> c.registerCatalysts(registration));
 
         registration.getJeiHelpers().getRecipeType(new ResourceLocation("create", "pressing")).ifPresent(type ->
-                registration.addRecipeCatalyst(new ItemStack(DDBlocks.hydraulic_press.get()), type));
-        registration.getJeiHelpers().getRecipeType(new ResourceLocation("create", "automatic_packing")).ifPresent(type ->
-                registration.addRecipeCatalyst(new ItemStack(DDBlocks.hydraulic_press.get()), type));
-        registration.getJeiHelpers().getRecipeType(new ResourceLocation("create", "packing")).ifPresent(type ->
                 registration.addRecipeCatalyst(new ItemStack(DDBlocks.hydraulic_press.get()), type));
 
         registration.getJeiHelpers().getRecipeType(new ResourceLocation("create", "sawing")).ifPresent(type ->
